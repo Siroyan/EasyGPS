@@ -1,12 +1,9 @@
 #ifndef EasyGPS_h
 #define EasyGPS_h
 
-#include "Arduino.h"
-#include "HardwareSerial"
-
 class EasyGPS{
     public:
-        EasyGPS();
+        EasyGPS(void);
         void setup();
         void update();
         float getIdo();
@@ -14,8 +11,5 @@ class EasyGPS{
     private:
         float ido;
         float keido;
-        float NMEA2DD(float val);
-        HardwareSerial gpsSerial;
-}
-
+};
 #endif
