@@ -3,3 +3,6 @@ setup   KEYWORD2
 update  KEYWORD2
 getIdo  KEYWORD2
 getKeido    KEYWORD2
+getDistance KEYWORD2
+getRawAzimuth   KEYWORD2
+getAzimuth  KEYWORD2

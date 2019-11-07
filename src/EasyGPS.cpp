@@ -54,3 +54,30 @@ float EasyGPS::getIdo(){
 float EasyGPS::getKeido(){
     return keido;
 }
+
+const float R = 6378137;
+
+float EasyGPS::getDistance(float targetIdo, float targetKeido){
+    float delta_x = targetIdo - ido;
+    float delta_y = targetKeido - keido;
+    float distance = R * sqrt(delta_x * delta_x + delta_y * delta_y);
+    return distance;
+}
+
+float rad2deg(float radian) {
+  return radian * 180.00 / M_PI;
+}
+
+float EasyGPS::getRawAzimuth(float targetIdo, float targetKeido){
+    float delta_x = targetIdo - ido;
+    float delta_y = targetKeido - keido;
+    float phi = rad2deg(atan2(R * delta_y, R * delta_x));
+    return phi;
+}
+
+float EasyGPS::getAzimuth(float targetIdo, float targetKeido){
+    float phi = getRawAzimuth(targetIdo, targetKeido);
+    if(-90 <= phi && phi <= 180) phi = phi - 90;
+    if(-180 <= phi && phi < -90) phi = phi + 270;
+    return phi;
+}
