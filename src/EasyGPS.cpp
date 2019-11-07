@@ -1,14 +1,22 @@
-#include "Arduino.h"
 #include "Math.h"
 #include "HardwareSerial.h"
 #include "EasyGPS.h"
 
+/* ToDo: [fix] ピン設定をスケッチから指定できるようにする。 */
+HardwareSerial gpsSerial = HardwareSerial(PA10, PA9);
 EasyGPS::EasyGPS(){
     /* hoge */
 }
 
 void EasyGPS::setup(){
-    gpsSerial = HardwareSerial(PA10, PA9);
+    gpsSerial.begin(9600);
+}
+
+float NMEA2DD(float val) {
+  int d = val / 100;
+  int m = (((val / 100.0) - d) * 100.0) / 60;
+  float s = (((((val / 100.0) - d) * 100.0) - m) * 60) / (60 * 60);
+  return float (d + m + s);
 }
 
 void EasyGPS::update(){
@@ -45,11 +53,4 @@ float EasyGPS::getIdo(){
 
 float EasyGPS::getKeido(){
     return keido;
-}
-
-float NMEA2DD(float val) {
-  int d = val / 100;
-  int m = (((val / 100.0) - d) * 100.0) / 60;
-  float s = (((((val / 100.0) - d) * 100.0) - m) * 60) / (60 * 60);
-  return float (d + m + s);
 }
