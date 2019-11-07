@@ -1,0 +1,5 @@
+EasyGPS KEYWORD1
+setup   KEYWORD2
+update  KEYWORD2
+getIdo  KEYWORD2
+getKeido    KEYWORD2
