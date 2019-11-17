@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "Math.h"
 #include "HardwareSerial.h"
 #include "EasyGPS.h"
@@ -75,7 +76,7 @@ float EasyGPS::getRawAzimuth(float targetIdo, float targetKeido){
     return phi;
 }
 
-float EasyGPS::getAzimuth(float targetIdo, float targetKeido){
+float EasyGPS::getAdjustedAzimuth(float targetIdo, float targetKeido){
     float phi = getRawAzimuth(targetIdo, targetKeido);
     if(-90 <= phi && phi <= 180) phi = phi - 90;
     if(-180 <= phi && phi < -90) phi = phi + 270;
